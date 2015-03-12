@@ -7,11 +7,11 @@
 
 #include "ps2.h"
 
+// NOTE: this project must have user RFID write permission to work
 // SET THESE
 #define PUBLIC_KEY ""
 #define PRIVATE_KEY ""
 byte mac[] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
-
 
 // Whiteish for initialized
 #define INITIALIZED_COLOR 50, 50, 50 
@@ -147,7 +147,7 @@ void loop() {
 
         String rfidHex = String(rfidValue, HEX);
     
-        if(rfidHex.length() == 7) {
+        while(rfidHex.length() < 8) {
           rfidHex = "0" + rfidHex; 
         }
     
