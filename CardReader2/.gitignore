@@ -1,0 +1,16 @@
+# OS X
+.DS_Store
+
+# C/PSoC Compilation Files
+*.cyfit
+*.cycdx
+*.rpt
+*.svd
+*_timing.html
+*/CortexM3
+*/codegentemp
+
+# PSoC Lock Files
+*.cyprj.*
+*.cywrk.*
+
