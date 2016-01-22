@@ -1,14 +1,7 @@
-/* ========================================
- *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
- *
- * ========================================
-*/
+/** @file kb_usb_hid.c
+ *  @brief implementation of a USB HID keyboard for PSoc
+ *  @author Ian Hartwig
+ */
 
 #include "kb_usb_hid.h"
 
@@ -281,6 +274,7 @@ uint8 kb_mod_from_ascii[128] =
 };
 
 
+/** @brief send a character to the host */
 void kb_putc(char c) {
     kb_data_t kb_data = {0x0, 0x0, {0x0, 0x0, 0x0, 0x0, 0x0, 0x0}};
     
@@ -301,6 +295,7 @@ void kb_putc(char c) {
 }
 
 
+/** @brief send a C string to the host */
 void kb_puts(char *s) {
     int s_len = strlen(s);
     for(int i=0; i < s_len; i++) {
@@ -309,6 +304,7 @@ void kb_puts(char *s) {
 }
 
 
+/** @brief initialize the USB HID interface */
 void kb_init() {
     /* Set user-defined Serial Number string descriptor. */
     USBFS_SerialNumString(bSNstring);

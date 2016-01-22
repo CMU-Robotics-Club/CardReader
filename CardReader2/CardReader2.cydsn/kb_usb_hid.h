@@ -1,14 +1,10 @@
-/* ========================================
+/** @file kb_usb_hid.h
+ *  @brief header for a USB HID keyboard for PSoc
+ *  @author Ian Hartwig
  *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
- *
- * ========================================
-*/
+ *  Supports standard C IO functions for ascii strings like putc and puts.
+ *  USB output calls are blocking until the data is acknoledged.
+ */
 
 #include <project.h>
 
@@ -89,8 +85,27 @@ typedef struct kb_data {
     uint8_t keys[KB_MAX_ROLLOVER];
 } kb_data_t;
 
+/** @brief send a character to the host
+ *
+ *  Blocks until USB ack is recieved for this character.
+ *
+ *  @arg c the character to send
+ */
 void kb_putc(char c);
+
+/** @brief send a C string to the host
+ *
+ *  Blocks until USB ack is recieved for all characters in string. This string
+ *  should only contain ascii characters, not generic data (must allow strlen).
+ *
+ *  @arg s the string to send
+ */
 void kb_puts(char *s);
+
+/** @brief initialize the USB HID interface
+ *
+ *  Blocks until USB ack is recieved for init.
+ */
 void kb_init(void);
 
 /* [] END OF FILE */
