@@ -118,6 +118,16 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Cm3Iar.icf</File>
           <File BuildType="BUILD" Toolchain="ARM IAR Generic">.\Generated_Source\PSoC5\CyBootAsmIar.s</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\project.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UART.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UART.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UART_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UART_INT.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UART_BOOT.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UART_IntClock.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UART_IntClock.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED1_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED1.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\LED1.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="Z:\ihartwig\repos\CardReader\CardReader2\CardReader2.cydsn\Export\ARM_GCC_Generic">
