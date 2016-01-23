@@ -34,6 +34,8 @@ uint8_t g_led_state = 0x0;
 /** @brief uart packet to ask rfid reader to seek for a card */
 const uint8_t rfid_command_seek[] = {0xFF, 0x00, 0x01, 0x82, 0x83};
 
+const uint8_t rfid_command_reset[] = {0xFF, 0x00, 0x01, 0x80, 0x81};
+
 /** @brief sections of the rfid reader UART packet */
 typedef enum rfid_meta {
     RFID_META_NONE = 0,
@@ -158,12 +160,26 @@ int main()
     
     kb_init();
     UART_Start();
-    UART_ClearRxBuffer();
-    UART_ClearTxBuffer();
             
     char display_buffer[1024];
     uint8_t rfid_packet_buffer[RFID_PACKET_LEN];
     int rfid_packet_length;
+    
+    // reset the reader (even though we just powered up) to be sure
+    UART_PutArray(rfid_command_reset, sizeof(rfid_command_reset));
+    rfid_read_packet(rfid_packet_buffer, RFID_PACKET_LEN, &rfid_packet_length);
+    #ifdef DEBUG
+    snprintf(display_buffer, 1024, "Firmware version %02X %02X %02X %02X %02X %02X %02X %02X\n",
+             rfid_packet_buffer[0],
+             rfid_packet_buffer[1],
+             rfid_packet_buffer[2],
+             rfid_packet_buffer[3],
+             rfid_packet_buffer[4],
+             rfid_packet_buffer[5],
+             rfid_packet_buffer[6],
+             rfid_packet_buffer[7]);
+    kb_puts(display_buffer);
+    #endif
     
     while(1) {
         // set the RFID reader to seek a new card
@@ -205,7 +221,7 @@ int main()
             }
         }
         // pause for human response time. otherwise we will get continuous output
-        CyDelay(500);
+        CyDelay(2000);
     } // main loop
 }
 
